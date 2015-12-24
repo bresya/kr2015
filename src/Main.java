@@ -40,6 +40,7 @@ public class Main extends JFrame{
         panel.add(jScrollPane);
         panel.add(profileView);
 
+
         this.add(panel);
         this.setVisible(true);
         this.setResizable(false);

@@ -54,7 +54,7 @@ public class Logic {
             in = new Scanner(new FileReader("players.txt"));
             String[] strings;
             while (in.hasNextLine()){
-                strings = in.nextLine().split(" ");
+                strings = in.nextLine().split("_");
                 int[] stats = {
                         Integer.parseInt(strings[4]),
                         Integer.parseInt(strings[5]),
@@ -105,9 +105,9 @@ public class Logic {
             for (Player p: players){
                 String stats = "";
                 for (int i = 0; i < p.getStats().length; i++) {
-                    stats+=Integer.toString(p.getStats()[i]) + " ";
+                    stats+=Integer.toString(p.getStats()[i]) + "_";
                 }
-                String player = p.getName() + " " + Integer.toString(p.getAge()) + " " + Boolean.toString(p.isInMain()) + " " + p.getRole() + " " + stats + "\n";
+                String player = p.getName() + "_" + Integer.toString(p.getAge()) + "_" + Boolean.toString(p.isInMain()) + "_" + p.getRole() + "_" + stats + "\n";
                 out.write(player);
                 out.flush();
             }

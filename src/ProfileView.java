@@ -39,6 +39,17 @@ public class ProfileView extends JPanel{
         panel.setMaximumSize(new Dimension(400,40));
     }
 
+    void colorize(JLabel label){
+        int i = Integer.parseInt(label.getText().split(":")[1].split(" ")[1]);
+        if (i>85){
+            label.setForeground(Color.RED);
+        }
+        else if (i>70){
+            label.setForeground(new Color(255,190,0));
+        }
+        else label.setForeground(Color.GREEN);
+    }
+
     //void refresh(){
     //    this.setPlayer(logic.getPlayer());
     //    this.updateUI();
@@ -54,6 +65,13 @@ public class ProfileView extends JPanel{
         defending.setText("Defending: " + Integer.toString(player.getStats()[3]));
         strength.setText("Strength: " + Integer.toString(player.getStats()[4]));
         passing.setText("Passing: " + Integer.toString(player.getStats()[5]));
+
+        colorize(shooting);
+        colorize(stamina);
+        colorize(defending);
+        colorize(pace);
+        colorize(passing);
+        colorize(strength);
 
         role.setText("Role: " + player.getRole().toString());
         age.setText("Age: " + Integer.toString(player.getAge()));
@@ -173,11 +191,12 @@ public class ProfileView extends JPanel{
         mainPanel.add(panel2);
 
 
-        mainSquad = new JButton("");
+        mainSquad = new JButton("Main Squad");
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
         buttonPanel.add(mainSquad);
+        buttonPanel.add(Box.createVerticalStrut(30));
 
 
         buttonPanel.add(Delete);

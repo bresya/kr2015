@@ -35,7 +35,9 @@ public class AddPlayer extends JFrame{
         jTextField.setMaximumSize(new Dimension(40, 20));
     }
     AddPlayer(final Logic logic){
-        setTextFieldSize(name);
+        name.setMinimumSize(new Dimension(150, 20));
+        name.setMaximumSize(new Dimension(150, 20));
+        name.setPreferredSize(new Dimension(150, 20));
         setTextFieldSize(age);
         setTextFieldSize(stamina);
         setTextFieldSize(pace);
@@ -59,24 +61,31 @@ public class AddPlayer extends JFrame{
         roleJComboBox.addItem(Role.DEFENDER);
         roleJComboBox.addItem(Role.MIDFIELDER);
         roleJComboBox.addItem(Role.STRIKER);
-        this.setMaximumSize(new Dimension(500,500));
-        this.setMinimumSize(new Dimension(500, 500));
-        this.setPreferredSize(new Dimension(500, 500));
+        this.setMaximumSize(new Dimension(350,250));
+        this.setMinimumSize(new Dimension(350, 250));
+        this.setPreferredSize(new Dimension(350, 250));
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
 
         JPanel nameP = new JPanel();
         nameP.setLayout(new BoxLayout(nameP, BoxLayout.Y_AXIS));
         nameP.add(nameL);
+        nameL.setAlignmentX(CENTER_ALIGNMENT);
         nameP.add(name);
+        name.setAlignmentX(CENTER_ALIGNMENT);
         JPanel ageP = new JPanel();
         ageP.setLayout(new BoxLayout(ageP, BoxLayout.Y_AXIS));
         ageP.add(ageL);
+        ageL.setAlignmentX(CENTER_ALIGNMENT);
         ageP.add(age);
+        age.setAlignmentX(CENTER_ALIGNMENT);
         JPanel roleP = new JPanel();
         roleP.setLayout(new BoxLayout(roleP, BoxLayout.Y_AXIS));
         roleP.add(roleL);
+        roleL.setAlignmentX(CENTER_ALIGNMENT);
         roleP.add(roleJComboBox);
+        roleJComboBox.setAlignmentX(CENTER_ALIGNMENT);
+        roleP.setAlignmentX(RIGHT_ALIGNMENT);
         JPanel stamP = new JPanel();
         stamP.setLayout(new BoxLayout(stamP, BoxLayout.Y_AXIS));
         stamP.add(stamL);
@@ -118,9 +127,9 @@ public class AddPlayer extends JFrame{
         pss.add(shootP);
         pss.add(strP);
         mainPanel.add(nar);
-        Box.createVerticalStrut(15);
+        mainPanel.add(Box.createVerticalStrut(15));
         mainPanel.add(spd);
-        Box.createVerticalStrut(15);
+        mainPanel.add(Box.createVerticalStrut(15));
         mainPanel.add(pss);
 
         Add.addActionListener(new ActionListener() {
