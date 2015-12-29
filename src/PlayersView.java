@@ -120,7 +120,7 @@ public class PlayersView extends JPanel{
 
         addMainSquad(squad, logic);
         addTeam(team, logic);
-        addPlayer = new ImagePanel("src/image/add.png");
+        addPlayer = new ImagePanel("/image/add.png");
         addPlayer.setMinimumSize(new Dimension(70,30));
         addPlayer.setMaximumSize(new Dimension(70, 30));
         addPlayer.setPreferredSize(new Dimension(70, 30));
@@ -144,12 +144,12 @@ public class PlayersView extends JPanel{
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                addPlayer.setBack("src/image/addH.png");
+                addPlayer.setBack("/image/addH.png");
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                addPlayer.setBack("src/image/add.png");
+                addPlayer.setBack("/image/add.png");
             }
         });
         addPlayer.setAlignmentX(LEFT_ALIGNMENT);

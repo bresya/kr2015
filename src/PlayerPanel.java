@@ -21,37 +21,37 @@ class PlayerPanel extends JPanel{
         label.setBounds(10, 0, 160, 25);
         switch (player.getRole()){
             case GK:
-                imageIcon = new ImageIcon("src/image/gk.png");
+                imageIcon = new ImageIcon(getClass().getResource("/image/gk.png"));
                 break;
             case CB:
-                imageIcon = new ImageIcon("src/image/def.png");
+                imageIcon = new ImageIcon(getClass().getResource("/image/def.png"));
                 break;
             case RB:
-                imageIcon = new ImageIcon("src/image/rb.png");
+                imageIcon = new ImageIcon(getClass().getResource("/image/rb.png"));
                 break;
             case LB:
-                imageIcon = new ImageIcon("src/image/lb.png");
+                imageIcon = new ImageIcon(getClass().getResource("/image/lb.png"));
                 break;
             case CM:
-                imageIcon = new ImageIcon("src/image/mf.png");
+                imageIcon = new ImageIcon(getClass().getResource("/image/mf.png"));
                 break;
             case RM:
-                imageIcon = new ImageIcon("src/image/rm.png");
+                imageIcon = new ImageIcon(getClass().getResource("/image/rm.png"));
                 break;
             case LM:
-                imageIcon = new ImageIcon("src/image/lm.png");
+                imageIcon = new ImageIcon(getClass().getResource("/image/lm.png"));
                 break;
             case CAM:
-                imageIcon = new ImageIcon("src/image/cam.png");
+                imageIcon = new ImageIcon(getClass().getResource("/image/cam.png"));
                 break;
             case RW:
-                imageIcon = new ImageIcon("src/image/rw.png");
+                imageIcon = new ImageIcon(getClass().getResource("/image/rw.png"));
                 break;
             case LW:
-                imageIcon = new ImageIcon("src/image/lw.png");
+                imageIcon = new ImageIcon(getClass().getResource("/image/lw.png"));
                 break;
             case ST:
-                imageIcon = new ImageIcon("src/image/st.png");
+                imageIcon = new ImageIcon(getClass().getResource("/image/st.png"));
                 break;
         }
         label.setText(player.getName());

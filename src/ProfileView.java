@@ -194,7 +194,7 @@ public class ProfileView extends JPanel{
         mainPanel.add(panel2);
         mainPanel.add(Box.createVerticalStrut(100));
 
-        mainSquad = new ImagePanel("src/image/transfer.png");
+        mainSquad = new ImagePanel("/image/transfer.png");
         mainSquad.setMinimumSize(new Dimension(70,30));
         mainSquad.setMaximumSize(new Dimension(70, 30));
         mainSquad.setPreferredSize(new Dimension(70, 30));
@@ -233,19 +233,19 @@ public class ProfileView extends JPanel{
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                mainSquad.setBack("src/image/transferH.png");
+                mainSquad.setBack("/image/transferH.png");
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                mainSquad.setBack("src/image/transfer.png");
+                mainSquad.setBack("/image/transfer.png");
             }
         });
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
         buttonPanel.add(mainSquad);
         buttonPanel.add(Box.createVerticalStrut(30));
-        Delete = new ImagePanel("src/image/del.png");
+        Delete = new ImagePanel("/image/del.png");
         Delete.setMinimumSize(new Dimension(70,30));
         Delete.setMaximumSize(new Dimension(70, 30));
         Delete.setPreferredSize(new Dimension(70, 30));
@@ -274,12 +274,12 @@ public class ProfileView extends JPanel{
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                Delete.setBack("src/image/delH.png");
+                Delete.setBack("/image/delH.png");
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                Delete.setBack("src/image/del.png");
+                Delete.setBack("/image/del.png");
             }
         });
         Delete.setAlignmentX(LEFT_ALIGNMENT);

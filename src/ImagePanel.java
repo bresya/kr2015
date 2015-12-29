@@ -7,11 +7,11 @@ import java.awt.*;
 public class ImagePanel extends JPanel{
     private Image background;
     public ImagePanel(String s){
-        this.background = Toolkit.getDefaultToolkit().createImage(s);
+        this.background = Toolkit.getDefaultToolkit().createImage(getClass().getResource(s));
     }
 
     public void setBack(String s){
-        this.background = Toolkit.getDefaultToolkit().createImage(s);
+        this.background = Toolkit.getDefaultToolkit().createImage(getClass().getResource(s));
         this.updateUI();
     }
     public void paint(Graphics g){

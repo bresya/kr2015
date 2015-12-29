@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * Created by bresya on 19.12.2015.
@@ -28,7 +30,7 @@ public class AddPlayer extends JFrame{
     private final JLabel passL;
     private final JLabel strL;
     private final JLabel shL;
-    private final JButton Add = new JButton("Add");
+
 
     void setTextFieldSize(JTextField jTextField){
         jTextField.setMinimumSize(new Dimension(40,20));
@@ -55,6 +57,10 @@ public class AddPlayer extends JFrame{
         passL= new JLabel("Passing");
         strL= new JLabel("Strength");
         shL= new JLabel("Shooting");
+        final ImagePanel Add = new ImagePanel("/image/add.png");
+        Add.setMinimumSize(new Dimension(70,30));
+        Add.setMaximumSize(new Dimension(70, 30));
+        Add.setPreferredSize(new Dimension(70, 30));
 
         roleJComboBox.setMaximumSize(new Dimension(200, 20));
         roleJComboBox.addItem(Role.GK);
@@ -121,6 +127,7 @@ public class AddPlayer extends JFrame{
         JPanel nar = new JPanel();
         nar.setLayout(new BoxLayout(nar,BoxLayout.X_AXIS));
         nar.add(nameP);
+        nar.add(Box.createHorizontalStrut(20));
         nar.add(ageP);
         nar.add(roleP);
         JPanel spd = new JPanel();
@@ -139,9 +146,9 @@ public class AddPlayer extends JFrame{
         mainPanel.add(Box.createVerticalStrut(15));
         mainPanel.add(pss);
 
-        Add.addActionListener(new ActionListener() {
+        Add.addMouseListener(new MouseListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 if (!stamina.getText().isEmpty() && !name.getText().isEmpty() && !age.getText().isEmpty() && !shooting.getText().isEmpty() && !pace.getText().isEmpty() && !defending.getText().isEmpty() && !strength.getText().isEmpty() && !passing.getText().isEmpty()) {
                     if(Integer.parseInt(age.getText())>0 && Integer.parseInt(age.getText())<100 &&Integer.parseInt(stamina.getText())>0 && Integer.parseInt(stamina.getText())<100 &&Integer.parseInt(strength.getText())>0 && Integer.parseInt(strength.getText())<100 &&Integer.parseInt(passing.getText())>0 && Integer.parseInt(shooting.getText())<100 &&Integer.parseInt(shooting.getText())>0 && Integer.parseInt(shooting.getText())<100 &&Integer.parseInt(defending.getText())>0 && Integer.parseInt(defending.getText())<100 &&Integer.parseInt(pace.getText())>0 && Integer.parseInt(pace.getText())<100){
                         int[] stats = {Integer.parseInt(stamina.getText()), Integer.parseInt(pace.getText()), Integer.parseInt(shooting.getText()), Integer.parseInt(defending.getText()), Integer.parseInt(strength.getText()), Integer.parseInt(passing.getText())};
@@ -159,8 +166,43 @@ public class AddPlayer extends JFrame{
                     ErrorGUI errorGUI = new ErrorGUI("Please fill all fields");
                 }
             }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                Add.setBack("/image/addH.png");
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                Add.setBack("/image/add.png");
+            }
         });
+        mainPanel.setBackground(new Color(82, 172, 98));
+        nar.setBackground(new Color(82, 172, 98));
+        spd.setBackground(new Color(82, 172, 98));
+        nameP.setBackground(new Color(82, 172, 98));
+        ageP.setBackground(new Color(82, 172, 98));
+        roleP.setBackground(new Color(82, 172, 98));
+        stamP.setBackground(new Color(82, 172, 98));
+        shootP.setBackground(new Color(82, 172, 98));
+        defP.setBackground(new Color(82, 172, 98));
+        paceP.setBackground(new Color(82, 172, 98));
+        strP.setBackground(new Color(82, 172, 98));
+        passP.setBackground(new Color(82, 172, 98));
+        this.setBackground(new Color(82, 172, 98));
         mainPanel.add(Add);
         this.add(mainPanel);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 }
