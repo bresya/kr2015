@@ -13,6 +13,7 @@ public class Logic {
     private final PlayersView playersView;
     private final ProfileView profileView;
     private final Main main;
+    File file = new File("players.txt");
    // ArrayList<Player> players = new ArrayList<Player>();
     void setPlayer(Player player1) {
         this.player = player1;
@@ -51,7 +52,10 @@ public class Logic {
     public void readPlayersFromFile(){
         Scanner in;
         try {
-            in = new Scanner(new FileReader("players.txt"));
+            if (!file.exists()){
+                file.createNewFile();
+            }
+            in = new Scanner(new FileReader(file));
             String[] strings;
             while (in.hasNextLine()){
                 strings = in.nextLine().split("_");
@@ -148,7 +152,6 @@ public class Logic {
     }
 
     public static void main(String[] args) {
-
         Logic logic = new Logic();
         System.out.println("OK");
 
