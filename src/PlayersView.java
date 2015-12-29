@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * Created by bresya on 19.12.2015.
@@ -10,7 +12,7 @@ public class PlayersView extends JPanel{
     private Logic logic;
 
     private JPanel mainSquad, goalkeepers, midfielders, strikers, defenders;
-    private JButton addPlayer;
+    private ImagePanel addPlayer;
 
     void refresh(){
         mainSquad.removeAll();
@@ -67,61 +69,95 @@ public class PlayersView extends JPanel{
         this.logic = logic;
         MainSquad squad = logic.getSquad();
         Team team = logic.getTeam();
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         setAlignmentX(LEFT_ALIGNMENT);
         JLabel mainL = new JLabel("Main Squad");
-        add(mainL);
+        mainPanel.add(mainL);
 
         mainSquad = new JPanel();
+        mainSquad.setBackground(new Color(82,172,98));
         mainSquad.setLayout(new BoxLayout(mainSquad,BoxLayout.Y_AXIS));
         mainSquad.setAlignmentX(LEFT_ALIGNMENT);
         mainSquad.setAutoscrolls(true);
-        add(mainSquad);
+        mainPanel.add(mainSquad);
 
         JLabel goalL = new JLabel("Goalkeepers");
-        add(goalL);
+        mainPanel.add(goalL);
         goalkeepers = new JPanel();
-        goalkeepers.setLayout(new BoxLayout(goalkeepers,BoxLayout.Y_AXIS));
+        goalkeepers.setBackground(new Color(82, 172, 98));
+        goalkeepers.setLayout(new BoxLayout(goalkeepers, BoxLayout.Y_AXIS));
         goalkeepers.setAlignmentX(LEFT_ALIGNMENT);
         goalkeepers.setAutoscrolls(true);
-        add(goalkeepers);
+        mainPanel.add(goalkeepers);
 
         JLabel defL = new JLabel("Defenders");
-        add(defL);
+        mainPanel.add(defL);
         defenders = new JPanel();
+        defenders.setBackground(new Color(82, 172, 98));
         defenders.setLayout(new BoxLayout(defenders, BoxLayout.Y_AXIS));
         defenders.setAlignmentX(LEFT_ALIGNMENT);
         defenders.setAutoscrolls(true);
-        add(defenders);
+        mainPanel.add(defenders);
 
         JLabel midL = new JLabel("Midfielders");
-        add(midL);
+        mainPanel. add(midL);
         midfielders = new JPanel();
+        midfielders.setBackground(new Color(82, 172, 98));
         midfielders.setLayout(new BoxLayout(midfielders, BoxLayout.Y_AXIS));
         midfielders.setAlignmentX(LEFT_ALIGNMENT);
         midfielders.setAutoscrolls(true);
-        add(midfielders);
+        mainPanel. add(midfielders);
 
         JLabel stL = new JLabel("Strikers");
-        add(stL);
+        mainPanel.  add(stL);
         strikers = new JPanel();
+        strikers.setBackground(new Color(82, 172, 98));
         strikers.setLayout(new BoxLayout(strikers, BoxLayout.Y_AXIS));
         strikers.setAlignmentX(LEFT_ALIGNMENT);
         strikers.setAutoscrolls(true);
-        add(strikers);
+        mainPanel.add(strikers);
 
-        addMainSquad(squad,logic);
+        addMainSquad(squad, logic);
         addTeam(team, logic);
-        addPlayer = new JButton("Add Player");
-        addPlayer.addActionListener(new ActionListener() {
+        addPlayer = new ImagePanel("src/image/add.png");
+        addPlayer.setMinimumSize(new Dimension(70,30));
+        addPlayer.setMaximumSize(new Dimension(70, 30));
+        addPlayer.setPreferredSize(new Dimension(70, 30));
+        addPlayer.addMouseListener(new MouseListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 AddPlayer addPlayer1 = new AddPlayer(logic);
                 addPlayer1.setVisible(true);
                 addPlayer1.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                addPlayer.setBack("src/image/addH.png");
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                addPlayer.setBack("src/image/add.png");
+            }
         });
-        this.add(addPlayer);
+        addPlayer.setAlignmentX(LEFT_ALIGNMENT);
+        mainPanel.add(addPlayer);
+        mainPanel.setBackground(new Color(82, 172, 98));
+        this.setBackground(new Color(82, 172, 98));
+
+        this.add(mainPanel);
 
     }
 

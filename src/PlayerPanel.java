@@ -13,23 +13,44 @@ class PlayerPanel extends JPanel{
     PlayerPanel(final Player player, final Logic logic){
         this.player = player;
         setLayout(null);
-        setBackground(Color.lightGray);
+        setBackground(new Color(62,105,69));
         setMinimumSize(new Dimension(160, 25));
         setMaximumSize(new Dimension(160, 25));
         setPreferredSize(new Dimension(160,25));
         JLabel label = new JLabel();
         label.setBounds(10, 0, 160, 25);
         switch (player.getRole()){
-            case GOALKEEPER:
+            case GK:
                 imageIcon = new ImageIcon("src/image/gk.png");
                 break;
-            case DEFENDER:
+            case CB:
                 imageIcon = new ImageIcon("src/image/def.png");
                 break;
-            case MIDFIELDER:
+            case RB:
+                imageIcon = new ImageIcon("src/image/rb.png");
+                break;
+            case LB:
+                imageIcon = new ImageIcon("src/image/lb.png");
+                break;
+            case CM:
                 imageIcon = new ImageIcon("src/image/mf.png");
                 break;
-            case STRIKER:
+            case RM:
+                imageIcon = new ImageIcon("src/image/rm.png");
+                break;
+            case LM:
+                imageIcon = new ImageIcon("src/image/lm.png");
+                break;
+            case CAM:
+                imageIcon = new ImageIcon("src/image/cam.png");
+                break;
+            case RW:
+                imageIcon = new ImageIcon("src/image/rw.png");
+                break;
+            case LW:
+                imageIcon = new ImageIcon("src/image/lw.png");
+                break;
+            case ST:
                 imageIcon = new ImageIcon("src/image/st.png");
                 break;
         }

@@ -55,18 +55,25 @@ public class MainSquad {
 
     void addPlayer(Player player){
         switch (player.getRole()){
-            case GOALKEEPER:
+            case GK:
                     goalkeeper=player;
                 break;
-            case DEFENDER:
+            case CB:
+            case RB:
+            case LB:
                 if (defenders.size()<10)//formation.getDefenders())
                     defenders.add(player);
                 break;
-            case MIDFIELDER:
+            case CM:
+            case CAM:
+            case RM:
+            case LM:
                 if (midfielders.size()<10)//formation.getMidfielders())
                     midfielders.add(player);
                 break;
-            case STRIKER:
+            case ST:
+            case RW:
+            case LW:
                 if (strikers.size()<10/*formation.getStrikers()*/)
                     strikers.add(player);
                 break;
@@ -78,16 +85,23 @@ public class MainSquad {
     void deletePlayer(Player player){
         team.addPlayer(player);
         switch (player.getRole()){
-            case GOALKEEPER:
+            case GK:
                     goalkeeper=null;
                 break;
-            case DEFENDER:
+            case CB:
+            case RB:
+            case LB:
                 defenders.remove(player);
                 break;
-            case MIDFIELDER:
+            case CM:
+            case CAM:
+            case RM:
+            case LM:
                 midfielders.remove(player);
                 break;
-            case STRIKER:
+            case ST:
+            case RW:
+            case LW:
                 strikers.remove(player);
                 break;
         }

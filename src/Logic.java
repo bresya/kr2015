@@ -9,7 +9,7 @@ public class Logic {
     private Team team = new Team();
     private MainSquad squad = new MainSquad(team);
     private final int[] empty = {0,0,0,0,0,0};
-    private Player player = new Player(" ", 0, false, Role.GOALKEEPER, empty);
+    private Player player = new Player(" ", 0, false, Role.GK, empty);
     private final PlayersView playersView;
     private final ProfileView profileView;
     private final Main main;

@@ -27,6 +27,8 @@ public class Main extends JFrame{
         this.logic = logic;
         playersView = logic.getPlayersView();
         profileView = logic.getProfileView();
+        playersView.setBackground(new Color(82,172,98));
+        profileView.setBackground(new Color(82,172,98));
         JPanel panel = new JPanel();
         jScrollPane = new JScrollPane(playersView);
         jScrollPane.setPreferredSize(new Dimension(180,400));
@@ -39,8 +41,8 @@ public class Main extends JFrame{
         jScrollPane.setAutoscrolls(true);
         panel.add(jScrollPane);
         panel.add(profileView);
-
-
+        this.setBackground(new Color(82,172,98));
+        panel.setBackground(new Color(82,172,98));
         this.add(panel);
         this.setVisible(true);
         this.setResizable(false);

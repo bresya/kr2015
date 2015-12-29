@@ -57,10 +57,17 @@ public class AddPlayer extends JFrame{
         shL= new JLabel("Shooting");
 
         roleJComboBox.setMaximumSize(new Dimension(200, 20));
-        roleJComboBox.addItem(Role.GOALKEEPER);
-        roleJComboBox.addItem(Role.DEFENDER);
-        roleJComboBox.addItem(Role.MIDFIELDER);
-        roleJComboBox.addItem(Role.STRIKER);
+        roleJComboBox.addItem(Role.GK);
+        roleJComboBox.addItem(Role.LB);
+        roleJComboBox.addItem(Role.RB);
+        roleJComboBox.addItem(Role.CB);
+        roleJComboBox.addItem(Role.CM);
+        roleJComboBox.addItem(Role.LM);
+        roleJComboBox.addItem(Role.RM);
+        roleJComboBox.addItem(Role.CAM);
+        roleJComboBox.addItem(Role.ST);
+        roleJComboBox.addItem(Role.RW);
+        roleJComboBox.addItem(Role.LW);
         this.setMaximumSize(new Dimension(350,250));
         this.setMinimumSize(new Dimension(350, 250));
         this.setPreferredSize(new Dimension(350, 250));

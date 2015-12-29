@@ -1,14 +1,19 @@
 
 
+import javafx.scene.image.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * Created by bresya on 19.12.2015.
  */
 public class ProfileView extends JPanel{
+    private Font font;
     private Player player;
     private Logic logic;
     private MainSquad squad;
@@ -24,8 +29,8 @@ public class ProfileView extends JPanel{
     private JLabel age;
     private JLabel name;
 
-    private JButton mainSquad;
-    private JButton Delete= new JButton("Delete");
+    private ImagePanel mainSquad;
+    private ImagePanel Delete;
 
     private void setLabelSize(JLabel panel){
         panel.setMinimumSize(new Dimension(140,20));
@@ -42,12 +47,12 @@ public class ProfileView extends JPanel{
     void colorize(JLabel label){
         int i = Integer.parseInt(label.getText().split(":")[1].split(" ")[1]);
         if (i>85){
-            label.setForeground(Color.RED);
+            label.setForeground(new Color(210,74,67));
         }
         else if (i>70){
             label.setForeground(new Color(255,190,0));
         }
-        else label.setForeground(Color.GREEN);
+        else label.setForeground(new Color(62,105,69));
     }
 
     //void refresh(){
@@ -76,59 +81,55 @@ public class ProfileView extends JPanel{
         role.setText("Role: " + player.getRole().toString());
         age.setText("Age: " + Integer.toString(player.getAge()));
         name.setText("Name: " + player.getName());
-        for (ActionListener a: mainSquad.getActionListeners()){
-            mainSquad.removeActionListener(a);
-        }
-
-            if (!player.isInMain()){
-                mainSquad.setText("To Main Squad");
-            }
-            else {
-                mainSquad.setText("From Main Squad");
-            }
-            mainSquad.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
+       // for (MouseListener a: mainSquad.getMouseListeners()){
+        //    mainSquad.removeMouseListener(a);
+        //}
 
 
-                            if (!player.isInMain()) {
-                                if (squad.getDefenders().size() + squad.getMidfielders().size() + squad.getStrikers().size() != 10) {
-                                    if (squad.getGoalkeeper() == null || !player.getRole().equals(Role.GOALKEEPER)) {
-                                        squad.addPlayer(player);
-                                        mainSquad.setText("From Main Squad");
-                                    } else {
-                                        ErrorGUI errorGUI = new ErrorGUI("There is a GK already");
-                                    }
-                                }
-                                else {ErrorGUI errorGUI = new ErrorGUI("Main Squad is full");}
-                            } else {
-                                squad.deletePlayer(player);
-                                mainSquad.setText("To Main Squad");
-                            }
-                            logic.setSquad(squad);
-                            logic.setTeam(team);
-                            logic.getPlayersView().refresh();
-
-
-
-                }
-            });
-
-
-
-        Delete.addActionListener(new ActionListener() {
+      /*  mainSquad.addMouseListener(new MouseListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                if (player.isInMain()){
+            public void mouseClicked(MouseEvent e) {
+                if (!player.isInMain()) {
+                    if (squad.getDefenders().size() + squad.getMidfielders().size() + squad.getStrikers().size() != 10) {
+                        if (squad.getGoalkeeper() == null || !player.getRole().equals(Role.GK)) {
+                            squad.addPlayer(player);
+                           // mainSquad.setText("From Main Squad");
+                        } else {
+                            ErrorGUI errorGUI = new ErrorGUI("There is a GK already");
+                        }
+                    }
+                    else {ErrorGUI errorGUI = new ErrorGUI("Main Squad is full");}
+                } else {
                     squad.deletePlayer(player);
-                    team.deletePlayer(player);
+                    //mainSquad.setText("To Main Squad");
                 }
-                else team.deletePlayer(player);
                 logic.setSquad(squad);
                 logic.setTeam(team);
                 logic.getPlayersView().refresh();
+
             }
-        });
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                mainSquad.setBack("src/image/transferH.png");
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                mainSquad.setBack("src/image/transfer.png");
+            }
+        });*/
+
 
         this.updateUI();
     }
@@ -147,7 +148,6 @@ public class ProfileView extends JPanel{
         age = new JLabel("Age: " + Integer.toString(player.getAge()));
         name = new JLabel("Name: " + player.getName());
 
-        Delete= new JButton("Delete");
 
         this.setSize(new Dimension(500,500));
         JPanel mainPanel = new JPanel();
@@ -186,18 +186,103 @@ public class ProfileView extends JPanel{
         setPanelSize(panel3);
 
         mainPanel.add(panel3);
+        mainPanel.add(Box.createVerticalStrut(10));
         mainPanel.add(panel);
+        mainPanel.add(Box.createVerticalStrut(10));
         mainPanel.add(panel1);
+        mainPanel.add(Box.createVerticalStrut(10));
         mainPanel.add(panel2);
+        mainPanel.add(Box.createVerticalStrut(100));
 
+        mainSquad = new ImagePanel("src/image/transfer.png");
+        mainSquad.setMinimumSize(new Dimension(70,30));
+        mainSquad.setMaximumSize(new Dimension(70, 30));
+        mainSquad.setPreferredSize(new Dimension(70, 30));
+        mainSquad.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (!player.isInMain()) {
+                    if (squad.getDefenders().size() + squad.getMidfielders().size() + squad.getStrikers().size() != 10) {
+                        if (squad.getGoalkeeper() == null || !player.getRole().equals(Role.GK)) {
+                            squad.addPlayer(player);
+                            // mainSquad.setText("From Main Squad");
+                        } else {
+                            ErrorGUI errorGUI = new ErrorGUI("There is a GK already");
+                        }
+                    }
+                    else {ErrorGUI errorGUI = new ErrorGUI("Main Squad is full");}
+                } else {
+                    squad.deletePlayer(player);
+                    //mainSquad.setText("To Main Squad");
+                }
+                logic.setSquad(squad);
+                logic.setTeam(team);
+                logic.getPlayersView().refresh();
 
-        mainSquad = new JButton("Main Squad");
+            }
 
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                mainSquad.setBack("src/image/transferH.png");
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                mainSquad.setBack("src/image/transfer.png");
+            }
+        });
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
         buttonPanel.add(mainSquad);
         buttonPanel.add(Box.createVerticalStrut(30));
+        Delete = new ImagePanel("src/image/del.png");
+        Delete.setMinimumSize(new Dimension(70,30));
+        Delete.setMaximumSize(new Dimension(70, 30));
+        Delete.setPreferredSize(new Dimension(70, 30));
+        Delete.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (player.isInMain()){
+                    squad.deletePlayer(player);
+                    team.deletePlayer(player);
+                }
+                else team.deletePlayer(player);
+                logic.setSquad(squad);
+                logic.setTeam(team);
+                logic.getPlayersView().refresh();
+            }
 
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                Delete.setBack("src/image/delH.png");
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                Delete.setBack("src/image/del.png");
+            }
+        });
+        Delete.setAlignmentX(LEFT_ALIGNMENT);
 
         buttonPanel.add(Delete);
 
@@ -205,7 +290,13 @@ public class ProfileView extends JPanel{
         this.add(mainPanel);
         mainPanel.setAlignmentY(0.5f);
         mainPanel.setAlignmentX(0.5f);
-
+        panel.setBackground(new Color(82, 172, 98));
+        panel1.setBackground(new Color(82, 172, 98));
+        panel2.setBackground(new Color(82, 172, 98));
+        mainPanel.setBackground(new Color(82, 172, 98));
+        buttonPanel.setBackground(new Color(82, 172, 98));
+        panel3.setBackground(new Color(82,172,98));
+        this.setBackground(new Color(82, 172, 98));
         this.setVisible(true);
     }
 

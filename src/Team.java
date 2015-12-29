@@ -52,20 +52,27 @@ public class Team {
     void addPlayer(Player player){
             if (totalPlayerCount < MAX_PLAYER_COUNT) {
                 switch (player.getRole()) {
-                case GOALKEEPER:
+                case GK:
                     if (goalkeepers.size() < MAX_GOALKEEPER_COUNT)
                         goalkeepers.add(player);
                     totalPlayerCount++;
                     break;
-                case DEFENDER:
+                    case CB:
+                    case RB:
+                    case LB:
                         defenders.add(player);
                     totalPlayerCount++;
                     break;
-                case MIDFIELDER:
+                    case CM:
+                    case CAM:
+                    case RM:
+                    case LM:
                         midfielders.add(player);
                     totalPlayerCount++;
                     break;
-                case STRIKER:
+                    case ST:
+                    case RW:
+                    case LW:
                         strikers.add(player);
                     totalPlayerCount++;
                     break;
@@ -77,19 +84,26 @@ public class Team {
     void deletePlayer(Player player){
         if(!player.isInMain()) {
             switch (player.getRole()) {
-                case GOALKEEPER:
+                case GK:
                     goalkeepers.remove(player);
                     totalPlayerCount--;
                     break;
-                case DEFENDER:
+                case CB:
+                case RB:
+                case LB:
                     defenders.remove(player);
                     totalPlayerCount--;
                     break;
-                case MIDFIELDER:
+                case CM:
+                case CAM:
+                case RM:
+                case LM:
                     midfielders.remove(player);
                     totalPlayerCount--;
                     break;
-                case STRIKER:
+                case ST:
+                case RW:
+                case LW:
                     strikers.remove(player);
                     totalPlayerCount--;
                     break;
